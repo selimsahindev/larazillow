@@ -3,7 +3,9 @@
     <Box v-for="listing in listings" :key="listing.id">
       <div>
         <Link :href="route('listing.show', listing.id)">
-        <ListingAddress :listing="listing" />
+        <Price :price="listing.price" class="text-2xl" />
+        <ListingSpace :listing="listing" class="text-lg hover:text-gray-500 dark:hover:text-gray-100" />
+        <ListingAddress :listing="listing" class="text-gray-500" />
         </Link>
       </div>
       <div>
@@ -15,9 +17,11 @@
 </template>
 
 <script setup>
-import ListingAddress from '@/Components/ListingAddress.vue';
-import { Link } from "@inertiajs/vue3";
+import ListingAddress from '@/Components/UI/ListingAddress.vue';
+import ListingSpace from '@/Components/UI/ListingSpace.vue';
+import Price from '@/Components/UI/Price.vue';
 import Box from '@/Components/UI/Box.vue';
+import { Link } from "@inertiajs/vue3";
 
 defineProps({
   listings: Array,

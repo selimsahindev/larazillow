@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import ListingAddress from '@/Components/ListingAddress.vue';
+import ListingAddress from '@/Components/UI/ListingAddress.vue';
 defineProps({
   listing: Object,
 });
