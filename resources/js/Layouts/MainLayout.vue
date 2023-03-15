@@ -8,7 +8,7 @@
                 <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-centered">
                     <Link :href="route('listing.index')">Larazillow</Link>
                 </div>
-                <div class="btn-primary">
+                <div class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md">
                     <Link :href="route('listing.create')">New Listing</Link>
                 </div>
             </nav>
