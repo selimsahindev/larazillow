@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -11,13 +13,32 @@ class AuthController extends Controller
         return Inertia('Auth/Login');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-         
+        // Second parameter is "remember me". Unless the user manually signs out,
+        // it will be authenticated forever.
+        if(!Auth::attempt($request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string'
+        ]), true))
+        {
+            throw ValidationException::withMessages([
+                'email' => 'Authentication failed.'
+            ]);
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->intended('/listing');
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('listing.index');
     }
 }

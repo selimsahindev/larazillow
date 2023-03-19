@@ -6,6 +6,7 @@
 
 <script setup>
 import Listing from '@/Pages/Listing/Index/Components/Listing.vue';
+
 defineProps({
   listings: Array,
 });

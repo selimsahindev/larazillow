@@ -8,8 +8,14 @@
                 <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-centered">
                     <Link :href="route('listing.index')">Larazillow</Link>
                 </div>
-                <div class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md">
-                    <Link :href="route('listing.create')">New Listing</Link>
+                <div v-if="user" class="flex items-center gap-4">
+                    <div class="text-sm text-gray-500">{{ user.name }}</div>
+                    <Link :href="route('listing.create')" class="btn-primary">New Listing</Link>
+                    <Link :href="route('logout')" method="DELETE" as="button">Logout</Link>
+                </div>
+                <div v-else>
+                    <Link :href="route('login')">Sign In
+                    </Link>
                 </div>
             </nav>
         </div>
@@ -28,5 +34,8 @@
 import { computed } from 'vue';
 import { Link, usePage } from "@inertiajs/vue3";
 
-const flashSuccess = computed(() => usePage().props.flash.success);
+const page = usePage();
+
+const flashSuccess = computed(() => page.props.flash.success);
+const user = computed(() => page.props.user);
 </script>
