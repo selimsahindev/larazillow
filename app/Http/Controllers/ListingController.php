@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+    // We can also add a middleware to specific routes like this.
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except(['index', 'show']);
+    // }
+ 
     public function index()
     {
         return inertia(

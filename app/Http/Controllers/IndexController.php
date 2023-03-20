@@ -12,7 +12,7 @@ class IndexController extends Controller
         // Base folder for all pages by default with inertia in Laravel ...
         // ... is always the resources/js/Pages folder.
 
-        dd(Auth::user());
+        dd(Auth::check());
 
         return inertia(
             'Index/Index',
